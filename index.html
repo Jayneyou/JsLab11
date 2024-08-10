@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+        li {
+            margin-bottom: 10px;
+        }
+
+        li button {
+            font-size: 12px;
+            margin-left: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+        <label for="item">Enter a new item:</label>
+        <input type="text" name="item" id="item">
+        <button>Add item</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+        const ul = document.querySelector("ul");
+        const input = document.querySelector("#item");
+        const button = document.querySelector("button");
+
+        button.addEventListener("click", function () {
+            //  storing the current value of the input
+            const inputValue = input.value;
+            // empty the input
+            input.value = "";
+            // create new elements
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            const deleteButton = document.createElement("button");
+            // append span and button as child of li
+            li.appendChild(span);
+            li.appendChild(deleteButton);
+            // set span to the input value
+            span.textContent = inputValue;
+            // set text of button to delete
+            deleteButton.textContent = "Delete";
+            // append list items as child of ul
+            ul.appendChild(li);
+            // event handler to delete button
+            deleteButton.addEventListener("click", function () {
+                ul.removeChild(li);
+            })
+            // focus input element
+            input.focus();
+        })
+    </script>
+</body>
+
+</html>
